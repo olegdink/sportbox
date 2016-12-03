@@ -18,30 +18,28 @@
 
         function show()
         {
-            $.ajax({
-                url: "r.php",
-                cache: false,
-                success: function(d){
-                    var cns = JSON.parse(d);
-                    var tableData = '';
+            $.getJSON('r-dev.php', function (d) {
+                //var cns = JSON.parse(d);
+                var tableData = '';
 
-                    for (c in cns)
-                    {
-                        tableData = tableData
-                                + '<tr>'
-                                + '<td><b>' + cns[c].rank    + '</b></td>'
-                                + '<td>'    + cns[c].title   + '</td>'
-                                + '<td>'    + cns[c].gold    + '</td>'
-                                + '<td>'    + cns[c].silver  + '</td>'
-                                + '<td>'    + cns[c].bronze  + '</td>'
-                                + '<td>'    + cns[c].total   + '</td></tr>';
-                    }
-
-                    document.getElementById("content").innerHTML =
-                            '<tr><th>№</th><th>Страна</th><th>З</th><th>С</th><th>Б</th><th>О</th></tr>'
-                            + tableData;
+                for (c in d)
+                {
+                    tableData = tableData
+                            + '<tr>'
+                            + '<td><b>' + d[c].rank    + '</b></td>'
+                            + '<td>'    + d[c].title   + '</td>'
+                            + '<td>'    + d[c].gold    + '</td>'
+                            + '<td>'    + d[c].silver  + '</td>'
+                            + '<td>'    + d[c].bronze  + '</td>'
+                            + '<td>'    + d[c].total   + '</td></tr>';
                 }
+
+                document.getElementById("content").innerHTML =
+                        '<tr><th>№</th><th>Страна</th><th>З</th><th>С</th><th>Б</th><th>О</th></tr>'
+                        + tableData;
+
             });
+
         }
 
         $(document).ready(function(){
