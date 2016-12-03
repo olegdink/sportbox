@@ -14,14 +14,10 @@
 
     <table class="table table-condensed table-hover table-bordered" id="content"></table>
     <script>
-
-
         function show()
         {
             $.getJSON('r-dev.php', function (d) {
-                //var cns = JSON.parse(d);
                 var tableData = '';
-
                 for (c in d)
                 {
                     tableData = tableData
@@ -33,11 +29,9 @@
                             + '<td>'    + d[c].bronze  + '</td>'
                             + '<td>'    + d[c].total   + '</td></tr>';
                 }
-
                 document.getElementById("content").innerHTML =
                         '<tr><th>№</th><th>Страна</th><th>З</th><th>С</th><th>Б</th><th>О</th></tr>'
                         + tableData;
-
             });
 
         }
@@ -46,7 +40,6 @@
             show();
             setInterval('show()',10000);
         });
-
     </script>
 </div>
 </body>
